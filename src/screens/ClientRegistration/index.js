@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, Text, View } from 'react-native'
+import { Alert, Keyboard, Text, View } from 'react-native'
 import { RadioButton } from 'react-native-paper'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
@@ -26,27 +26,30 @@ export default function ClientRegistration() {
             "gender": gender
         }
 
-        if (name.trim() === '' || birthDate === '' || gender.trim() === '') {
-            Alert.alert('Campos inválidos', 'Por favor, preencha todos os campos.')
-        } else {
-            try {
-                const { status } = await api.post('/clients', client)
-
-                if (status === 200) {
-                    Alert.alert('Cadastro realizado', 'Cliente cadastrado com sucesso!')
-
-                    setName('')
-                    setBirthDate('')
-                    setGender('')
-
-                } else {
-                    Alert.alert('Erro', 'Não foi possível cadastrar o cliente.')
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
+        if (name.trim() === '' || birthDate === '' || gender === '') {
+            return Alert.alert('Campos inválidos', 'Por favor, preencha todos os campos.')
         }
+
+        try {
+            const { status } = await api.post('/clients', client)
+
+            if (status === 200) {
+                Alert.alert('Cadastro realizado', 'Cliente cadastrado com sucesso!')
+
+                setName('')
+                setBirthDate('')
+                setGender('')
+
+                Keyboard.dismiss()
+
+            } else {
+                Alert.alert('Erro', 'Não foi possível cadastrar o cliente.')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (

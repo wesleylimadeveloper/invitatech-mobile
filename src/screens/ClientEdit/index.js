@@ -42,28 +42,29 @@ export default function ClientEdit() {
         const client = {
             "name": name.trim(),
             "birth": formatedDate,
-            "gender": gender.trim().toLowerCase()
+            "gender": gender
         }
 
-        if (name.trim() === '' || birthDate.trim() === '' || gender.trim() === '') {
+        if (name.trim() === '' || birthDate === '' || gender === '') {
             Alert.alert('Campos inválidos', 'Por favor, preencha todos os campos.')
-        } else {
-            try {
-                const { status } = await api.put(`/clients/${client_id}`, client)
-
-                if (status === 200) {
-                    navigation.navigate('RegisteredClients')
-
-                    Alert.alert('Dados atualizados', 'Cliente atualizado com sucesso!')
-
-                } else {
-                    Alert.alert('Erro', 'Não foi possível atualizar os dados.')
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
         }
+
+        try {
+            const { status } = await api.put(`/clients/${client_id}`, client)
+
+            if (status === 200) {
+                navigation.navigate('RegisteredClients')
+
+                Alert.alert('Dados atualizados', 'Cliente atualizado com sucesso!')
+
+            } else {
+                Alert.alert('Erro', 'Não foi possível atualizar os dados.')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     useEffect(() => {

@@ -44,7 +44,7 @@ export default function AddressEdit() {
 
     async function handleSalvar() {
         const address = {
-            "cep": cep.trim(),
+            "cep": cep,
             "public_area": publicArea.trim(),
             "number": number.trim(),
             "complement": complement.trim(),
@@ -52,25 +52,26 @@ export default function AddressEdit() {
             "uf": uf.trim()
         }
 
-        if (cep.trim() === '' || publicArea.trim() === '' || number.trim() === '' || uf.trim() === '') {
+        if (cep === '' || publicArea.trim() === '' || number.trim() === '' || uf.trim() === '') {
             Alert.alert('Campos inválidos', 'Com exceção dos campos de complemento e bairro, todos os campos são obrigatórios.')
-        } else {
-            try {
-                const { status } = await api.put(`/addresses/${address_id}`, address)
-
-                if (status === 200) {
-                    navigation.navigate('RegisteredAddresses', client_id)
-
-                    Alert.alert('Dados atualizados', 'Endereço atualizado com sucesso!')
-
-                } else {
-                    Alert.alert('Erro', 'Não foi possível atualizar o endereço.')
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
         }
+
+        try {
+            const { status } = await api.put(`/addresses/${address_id}`, address)
+
+            if (status === 200) {
+                navigation.navigate('RegisteredAddresses', client_id)
+
+                Alert.alert('Dados atualizados', 'Endereço atualizado com sucesso!')
+
+            } else {
+                Alert.alert('Erro', 'Não foi possível atualizar o endereço.')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     useEffect(() => {

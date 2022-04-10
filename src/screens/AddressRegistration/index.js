@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, View } from 'react-native'
+import { Alert, Keyboard, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import Entypo from '@expo/vector-icons/Entypo'
 
@@ -31,30 +31,33 @@ export default function AddressRegistration() {
             "uf": uf.trim()
         }
 
-        if (cep.trim() === '' || publicArea.trim() === '' || number.trim() === '' || uf.trim() === '') {
+        if (cep === '' || publicArea.trim() === '' || number.trim() === '' || uf.trim() === '') {
             Alert.alert('Campos inválidos', 'Com exceção dos campos de complemento e bairro, todos os campos são obrigatórios.')
-        } else {
-            try {
-                const { status } = await api.post('/addresses', address)
-
-                if (status === 200) {
-                    Alert.alert('Cadastro realizado', 'Endereço cadastrado com sucesso!')
-
-                    setCep('')
-                    setPublicArea('')
-                    setNumber('')
-                    setComplement('')
-                    setDistrict('')
-                    setUf('')
-
-                } else {
-                    Alert.alert('Erro', 'Não foi possível cadastrar o endereço.')
-                }
-
-            } catch (error) {
-                console.log(error)
-            }
         }
+
+        try {
+            const { status } = await api.post('/addresses', address)
+
+            if (status === 200) {
+                Alert.alert('Cadastro realizado', 'Endereço cadastrado com sucesso!')
+
+                setCep('')
+                setPublicArea('')
+                setNumber('')
+                setComplement('')
+                setDistrict('')
+                setUf('')
+
+                Keyboard.dismiss()
+
+            } else {
+                Alert.alert('Erro', 'Não foi possível cadastrar o endereço.')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (
