@@ -21,7 +21,7 @@ export default function Home() {
             />
 
             <Button
-                title="Clientes cadastrados"
+                title="Clientes"
                 onPress={() => navigation.navigate('RegisteredClients')}
             />
 

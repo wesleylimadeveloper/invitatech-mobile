@@ -50,12 +50,12 @@ export default function ClientCard({ client }) {
             />
 
             <Button
-                title="Editar cliente"
+                title="Editar"
                 onPress={() => navigation.navigate('ClientEdit', client_id)}
             />
 
             <Button
-                title="Excluir cliente"
+                title="Excluir"
                 onPress={handleExcluir}
             />
         </View>

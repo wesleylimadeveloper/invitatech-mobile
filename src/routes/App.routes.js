@@ -36,7 +36,7 @@ export default function AppRoutes() {
                 name="RegisteredClients"
                 component={RegisteredClients}
                 options={{
-                    headerTitle: 'Clientes cadastrados'
+                    headerTitle: 'Clientes'
                 }}
             />
 
@@ -44,7 +44,7 @@ export default function AppRoutes() {
                 name="RegisteredAddresses"
                 component={RegisteredAddresses}
                 options={{
-                    headerTitle: 'Endereços cadastrados'
+                    headerTitle: 'Endereços'
                 }}
             />
 

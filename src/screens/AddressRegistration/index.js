@@ -32,7 +32,7 @@ export default function AddressRegistration() {
         }
 
         if (cep === '' || publicArea.trim() === '' || number.trim() === '' || uf.trim() === '') {
-            Alert.alert('Campos inválidos', 'Com exceção dos campos de complemento e bairro, todos os campos são obrigatórios.')
+            return Alert.alert('Campos inválidos', 'Com exceção dos campos de complemento e bairro, todos os campos são obrigatórios.')
         }
 
         try {

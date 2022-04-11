@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
         letterSpacing: 0,
         marginBottom: 2,
         marginTop: 2,
+        textAlign: 'center'
     },
     birth: {
         fontFamily: 'Roboto_400Regular',

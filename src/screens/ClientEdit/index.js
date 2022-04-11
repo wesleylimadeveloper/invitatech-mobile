@@ -46,7 +46,7 @@ export default function ClientEdit() {
         }
 
         if (name.trim() === '' || birthDate === '' || gender === '') {
-            Alert.alert('Campos inválidos', 'Por favor, preencha todos os campos.')
+            return Alert.alert('Campos inválidos', 'Por favor, preencha todos os campos.')
         }
 
         try {
